@@ -37,7 +37,7 @@ def readData(path , h=size, w=size):
 
             img = cv2.imread(filename)
 
-            top,bottom,left,right = getPaddingSize(img)
+            top, bottom, left, right = getPaddingSize(img)
             img = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=[0,0,0])
             img = cv2.resize(img, (h, w))
 
@@ -48,7 +48,7 @@ readData(my_faces_path)
 readData(other_faces_path)
 imgs = np.array(imgs)
 labs = np.array([[0,1] if lab == my_faces_path else [1,0] for lab in labs])
-train_x,test_x,train_y,test_y = train_test_split(imgs, labs, test_size=0.05, random_state=random.randint(0,100))
+train_x, test_x, train_y, test_y = train_test_split(imgs, labs, test_size=0.05, random_state=random.randint(0,100))
 train_x = train_x.reshape(train_x.shape[0], size, size, 3)
 test_x = test_x.reshape(test_x.shape[0], size, size, 3)
 train_x = train_x.astype('float32')/255.0
